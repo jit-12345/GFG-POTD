@@ -1,0 +1,53 @@
+
+
+//User function Template for Java
+
+class Solution 
+{ 
+    //question name;String rp or pr
+    //question link:https://practice.geeksforgeeks.org/problems/d25f415de2ff3e02134de03e17ad019d723ab2e9/1
+    //Source link:https://youtu.be/DSd83iV0UWs
+    static long solve(int X,int Y, String S)
+	{    
+	    // code here
+	    String s1="pr";
+	    String s2="rp";
+	    if(X<Y)
+	    {
+	        int temp=X;X=Y;Y=temp;
+	        String s=s2;s2=s1;s1=s;
+	    }
+	    long ans=0;
+	    Stack<Character>st=new Stack<>();
+	    for(int i=S.length()-1;i>=0;i--){
+	        Character curr=S.charAt(i); Character first=s1.charAt(0);Character second=s1.charAt(1);
+	        if(st.size()>0 && curr==first && st.peek()==second ){
+	            st.pop();
+	           ans+=X;
+	           
+	        }
+	        else{
+	            st.push(curr);
+	        }
+	    }
+	    StringBuilder rem=new StringBuilder();
+	    while(st.size()!=0){
+	        rem.append(st.pop());
+	    }
+	    S=rem.toString();
+	    
+        //  Stack<Character>st=new Stack<>();
+	    for(int i=S.length()-1;i>=0;i--){
+	        Character curr=S.charAt(i); Character first=s2.charAt(0);Character second=s2.charAt(1);
+	        if(st.size()>0 && curr==first && st.peek()==second ){
+	            st.pop();
+	           ans+=Y;
+	           
+	        }
+	        else{
+	            st.push(curr);
+	        }
+	    }
+	    return ans;
+	}
+} 
